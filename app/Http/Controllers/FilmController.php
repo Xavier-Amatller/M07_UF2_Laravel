@@ -122,4 +122,14 @@ class FilmController extends Controller
         }
         return view("films.list", ["films" => $films_filtered, "title" => $title]);
     }
+
+    public function sortFilmsByYear() {
+        $sorted_films = [];
+
+        $title = "Listado de Pelis Nuevas por año";
+        $films = FilmController::readFilms();
+
+        $sorted_films = collect($films)->sortByDesc("year");
+        return view('films.list', ["films" => $sorted_films, "title" => $title]);
+    }
 }

@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Storage;
 
 class FilmController extends Controller
 {
-
     /**
      * Read films from storage
      */

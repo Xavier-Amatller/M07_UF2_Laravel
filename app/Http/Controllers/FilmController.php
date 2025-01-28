@@ -123,7 +123,8 @@ class FilmController extends Controller
         return view("films.list", ["films" => $films_filtered, "title" => $title]);
     }
 
-    public function sortFilmsByYear() {
+    public function sortFilmsByYear()
+    {
         $sorted_films = [];
 
         $title = "Listado de Pelis Nuevas por año";
@@ -133,14 +134,20 @@ class FilmController extends Controller
         return view('films.list', ["films" => $sorted_films, "title" => $title]);
     }
 
-    
-    public function countFilms() {
+
+    public function countFilms()
+    {
 
         $title = "Numero de pelis en la base de datos";
         $films = FilmController::readFilms();
 
         $count = count($films);
         return view('films.count', ["count" => $count, "title" => $title]);
-
     }
+
+    // public function createFilm(Request $request) {
+
+
+    //     return $this->listFilms();
+    // }
 }

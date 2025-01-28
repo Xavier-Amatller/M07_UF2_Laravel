@@ -3,7 +3,9 @@
 @section('title', 'Welcome')
 
 @section('content')
-
+    @if (session('error'))
+        <h2 style="color: red">{{ session('error') }}</h2>
+    @endif
     <h1 class="mt-4">Lista de Peliculas</h1>
     <ul>
         <li><a href=/filmout/oldFilms>Pelis antiguas</a></li>
@@ -26,9 +28,8 @@
         <input type="submit" value="Enviar">
     </form>
 
-    @if (!empty($errorMessage))
-        <FONT COLOR="red">No se ha podido crear la película</FONT>
-    @endif
+
+
     <!-- Add Bootstrap JS and Popper.js (required for Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

@@ -21,7 +21,7 @@ class ValidateYear
         // in case year is not numeric go to homepage
         if(isset($year)){
             if(is_null($year) || !is_numeric($year)){
-                  return redirect('/');
+                  return redirect('/')->with("error", "Introduce un año valido");
             }
         }
         return $next($request);        

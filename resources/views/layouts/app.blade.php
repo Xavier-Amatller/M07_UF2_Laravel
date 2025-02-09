@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    
-    <!-- Add Bootstrap CSS link -->
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <!-- Include any additional stylesheets or scripts here -->
 </head>
+
 <body>
-    <header>
+    
+    <header class="bg-dark text-white text-center py-3">
         <h1>CABECERA DE LA WEB (MASTER)</h1>
-        <img src="#" alt="IMAGEN CABECERA">
-    </header>
-    <main>
+        <img src="{{ asset('imgs/White And Black Gradient Coming Soon Email Header.png') }}" alt="IMAGEN PIE DE PAGINA">
+        </header>
+    <main class="container my-4">
         @yield('content')
     </main>
-    <footer>
+    <footer class="bg-dark text-white text-center py-3">
         <h1>PIE DE PAGINA (MASTER)</h1>
-        <img src="#" alt="IMAGEN PIE DE PAGINA">
-    </footer>
+        <img src="{{ asset('imgs/Purple Sky Profile Header.png') }}" alt="IMAGEN PIE DE PAGINA">
+        </footer>
 </body>
+
 </html>

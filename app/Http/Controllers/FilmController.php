@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Translation\Dumper\IcuResFileDumper;
 
 class FilmController extends Controller
 {
@@ -145,9 +147,40 @@ class FilmController extends Controller
         return view('films.count', ["count" => $count, "title" => $title]);
     }
 
-    // public function createFilm(Request $request) {
+    public function createFilm(Request $request)
+    {
+        $name = $request->input('name');
+        if ($this->isFilm($name)) {
+            return redirect("/")->with("error", "Esta pelicula ya esta registrada");
+        }
+        $year = $request->input('year');
+        $genre = $request->input('genre');
+        $country = $request->input('country');
+        $img_url = $request->input('img_url');
+        $duration = $request->input('duration');
+        $films = [...$this->readFilms()];
 
+        $film = [
+            "name" => $name,
+            "year" => $year,
+            "genre" => $genre,
+            "country" => $country,
+            "img_url" => $img_url,
+            "duration" => $duration,
+        ];
+        array_push($films, $film);
+        Storage::put('/public/films.json',json_encode($films));
+        return $this->listFilms();
+    }
 
-    //     return $this->listFilms();
-    // }
+    private function isFilm($name)
+    {
+        $films = [...$this->readFilms()];
+        foreach($films as $film){
+            if($film["name"] == $name){
+                return true;
+            }
+        }
+        return false;
+    }
 }

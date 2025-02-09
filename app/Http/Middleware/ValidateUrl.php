@@ -15,14 +15,14 @@ class ValidateUrl
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $url = $request->input('url');
-
-        // in case url is not numeric go to homepage
-        if (isset($url)) {
-            if (is_null($url) || is_numeric($url)) {
-                return redirect('/')->with("error","Introduce una url valida");
-            }
+        if (!$this->isValidUrl($request->image_url)) {
+            return redirect('/')->with('error' , 'La url no es correcta.');
         }
+
         return $next($request);
+    }
+
+    private function isValidUrl($url){
+        return filter_var($url, FILTER_VALIDATE_URL) !== false;
     }
 }

@@ -15,10 +15,15 @@ class ValidateUrl
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$this->isValidUrl($request->image_url)) {
-            return redirect('/')->with('error' , 'La url no es correcta.');
+        // Depurar el valor recibido
+        if (!$request->has('img_url')) {
+            return redirect('/')->with('error', 'El campo image_url no está presente.');
         }
-
+    
+        if (!$this->isValidUrl($request->img_url)) {
+            return redirect('/')->with('error', 'La URL no es correcta.');
+        }
+    
         return $next($request);
     }
 
